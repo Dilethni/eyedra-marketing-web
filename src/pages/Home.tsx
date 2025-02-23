@@ -5,9 +5,9 @@ export default function Home() {
   return (
     <div className="relative isolate ">
       {/* Background video without opacity */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 h-[100vh] max-h-[700px]">
         <video
-          className="w-full h-screen object-cover opacity-80"
+          className="w-screen  h-screen object-cover opacity-80"
           autoPlay
           loop
           muted
@@ -20,9 +20,8 @@ export default function Home() {
         <div className="absolute inset-0 opacity-30"></div> {/* Changed from opacity-60 to opacity-30 */}
       </div>
 
-      {/* Rest of the component remains the same */}
       {/* Hero section */}
-      <div className="relative pt-24">
+      <div className="relative flex flex-col justify-center items-center text-center h-[100vh] max-h-[700px]">
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <motion.div
@@ -54,37 +53,39 @@ export default function Home() {
       </div>
 
       {/* Features section */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 sm:text-6xl">Features</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-600 sm:text-4xl">
-            Everything you need for your mental well-being
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-400">
-            EYEDRA provides a comprehensive suite of tools and features designed to support your mental health journey.
-          </p>
-        </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {features.map((feature) => (
-              <motion.div
-                key={feature.name}
-                className="flex flex-col p-6 bg-white/90 border rounded-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-blue-100  hover:to-pink-100"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <feature.icon className="h-5 w-5 flex-none text-primary-600" aria-hidden="true" />
-                  {feature.name}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{feature.description}</p>
-                </dd>
-              </motion.div>
-            ))}
-          </dl>
+      <div className="relative bg-white py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 sm:text-6xl">Features</h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-600 sm:text-4xl">
+              Everything you need for your mental well-being
+            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-400">
+              EYEDRA provides a comprehensive suite of tools and features designed to support your mental health journey.
+            </p>
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+              {features.map((feature) => (
+                <motion.div
+                  key={feature.name}
+                  className="flex flex-col p-6 bg-white/90 border rounded-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-blue-100  hover:to-pink-100"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                    <feature.icon className="h-5 w-5 flex-none text-primary-600" aria-hidden="true" />
+                    {feature.name}
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                    <p className="flex-auto">{feature.description}</p>
+                  </dd>
+                </motion.div>
+              ))}
+            </dl>
+          </div>
         </div>
       </div>
 
