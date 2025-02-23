@@ -12,29 +12,35 @@ const navigation = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setMobileMenuOpen(false);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsVisible(false); // Hide navbar on scroll down
+      } else {
+        setIsVisible(true); // Show navbar on scroll up
       }
+
+      setLastScrollY(currentScrollY);
     };
 
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-      document.addEventListener('keydown', handleEscape);
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      document.body.style.overflow = 'unset';
-      document.removeEventListener('keydown', handleEscape);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [mobileMenuOpen]);
+  }, [lastScrollY]);
 
   return (
-    <header className="fixed w-full bg-transparent backdrop-blur-md z-50 ">
+    <header
+      className={`fixed top-0 w-full bg-transparent backdrop-blur-md z-50 transition-transform duration-300 ${
+        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      }`}
+    >
       <nav 
         className="mx-auto flex max-w-7xl items-center justify-between p-4 md:p-6 lg:px-8" 
         aria-label="Global"
