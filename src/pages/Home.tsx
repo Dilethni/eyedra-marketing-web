@@ -1,46 +1,27 @@
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const featuresRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!videoRef.current || !featuresRef.current) return;
-
-      const featureSectionTop = featuresRef.current.getBoundingClientRect().top;
-
-      // Pause video when the "Features" section is about to enter the viewport
-      if (featureSectionTop <= window.innerHeight * 0.8) {
-        videoRef.current.pause();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div className="relative isolate">
-      {/* Background video */}
-      <div className="absolute inset-0 -z-10">
+    <div className="relative isolate ">
+      {/* Background video without opacity */}
+      <div className="absolute inset-0 -z-10 h-[100vh] max-h-[700px]">
         <video
-          ref={videoRef}
-          className="w-full h-screen object-cover opacity-80"
+          className="w-full h-full object-cover opacity-80"
           autoPlay
+          loop
           muted
           playsInline
         >
           <source src="bg-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 opacity-30"></div>
+        {/* Reduced overlay opacity for better video visibility */}
+        <div className="absolute inset-0 opacity-30"></div> {/* Changed from opacity-60 to opacity-30 */}
       </div>
 
       {/* Hero section */}
-      <div className="relative pt-24">
+      <div className="relative flex flex-col justify-center items-center text-center h-[100vh] max-h-[700px]">
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <motion.div
@@ -55,7 +36,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-100">
-                Step into the world of EYEDRA, where cutting-edge technology and heartfelt emotional support come together.
+                Step into the world of EYEDRA, where cutting-edge technology and heartfelt emotional support come together. 
                 Connect with others, share your journey, and discover the strength of a safe, compassionate community.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -72,46 +53,68 @@ export default function Home() {
       </div>
 
       {/* Features section */}
-      <div ref={featuresRef} className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 sm:text-6xl">
-            Features
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-600 sm:text-4xl">
-            Everything you need for your mental well-being
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-400">
-            EYEDRA provides a comprehensive suite of tools and features designed to support your mental health journey.
-          </p>
-        </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {features.map((feature) => (
-              <motion.div
-                key={feature.name}
-                className="flex flex-col p-6 bg-white/90 border rounded-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-blue-100  hover:to-pink-100"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <feature.icon className="h-5 w-5 flex-none text-primary-600" aria-hidden="true" />
-                  {feature.name}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{feature.description}</p>
-                </dd>
-              </motion.div>
-            ))}
-          </dl>
+      <div className="relative bg-white py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 sm:text-6xl">Features</h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-600 sm:text-4xl">
+              Everything you need for your mental well-being
+            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-400">
+              EYEDRA provides a comprehensive suite of tools and features designed to support your mental health journey.
+            </p>
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+              {features.map((feature) => (
+                <motion.div
+                  key={feature.name}
+                  className="flex flex-col p-6 bg-white/90 border rounded-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-blue-100  hover:to-pink-100"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                    <feature.icon className="h-5 w-5 flex-none text-primary-600" aria-hidden="true" />
+                    {feature.name}
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                    <p className="flex-auto">{feature.description}</p>
+                  </dd>
+                </motion.div>
+              ))}
+            </dl>
+          </div>
         </div>
       </div>
+
+      {/* Download section */}
+      <div className="mx-auto mt-16 mb-16 max-w-7xl sm:mt-24 sm:px-6 lg:px-8">
+        <div className="relative isolate overflow-hidden bg-white/90 border rounded-lg px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16 
+            transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-3xl hover:bg-gradient-to-r hover:from-blue-100  hover:to-pink-100">
+          <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 sm:text-4xl">
+            Download EYEDRA Today
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600">
+            Take the first step towards better mental well-being. Download our app and join a community that cares.
+          </p>
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <a
+              href="#"
+              className="rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 px-8 py-4 text-sm font-semibold text-white shadow-sm transition-all duration-300 ease-in-out 
+                hover:scale-105 hover:shadow-lg hover:from-primary-500 hover:to-secondary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+            >
+              Download APK
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
 
-// Feature Data
 const features = [
   {
     name: 'Virtual Campfire Sessions',
