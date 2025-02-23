@@ -64,12 +64,16 @@ export default function Navbar() {
             <Link 
               key={item.name} 
               to={item.href} 
-              className="text-white hover:text-gray-900 transition-colors"
+              className="relative font-bold text-blue-1000 hover:text-blue-600 transition-colors 
+                        after:content-[''] after:absolute after:bottom-0 after:left-0 
+                        after:w-0 after:h-[2px] after:bg-blue-600 
+                        hover:after:w-full after:transition-all after:duration-300"
             >
               {item.name}
             </Link>
           ))}
         </div>
+
         <button
           type="button"
           className="lg:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:bg-gray-100 transition-colors"
