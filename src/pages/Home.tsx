@@ -7,7 +7,7 @@ export default function Home() {
       {/* Background video without opacity */}
       <div className="absolute inset-0 -z-10 h-[100vh] max-h-[700px]">
         <video
-          className="w-full h-full object-cover opacity-80"
+          className="w-screen  h-screen object-cover opacity-80"
           autoPlay
           loop
           muted
