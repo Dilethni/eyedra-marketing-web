@@ -6,7 +6,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Team from './pages/Team'; 
 import Contact from './pages/Contact';
-import Privacy from './pages/Privacy';
+import Journey from './pages/Journey';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/team" element={<Team />} /> 
             <Route path="/contact" element={<Contact />} />
-            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/journey" element={<Journey />} />
           </Routes>
         </main>
         <Footer />
