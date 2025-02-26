@@ -13,7 +13,7 @@ export default function Home() {
           muted
           playsInline
         >
-          <source src="bg-video.mp4" type="video/mp4" />
+          <source src="bg-video-001.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         {/* Reduced overlay opacity for better video visibility */}
@@ -29,13 +29,13 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text tracking-tight text-transparent sm:text-6xl">
                 Your Mental Well-being
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                <span className="block font-bold bg-gradient-to-r from-primary-900 to-secondary-900 bg-clip-text text-transparent">
                   Matters Most
                 </span>
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-100">
+              <p className="mt-6 text-lg font-bold leading-8 text-blue-900">
                 Step into the world of EYEDRA, where cutting-edge technology and heartfelt emotional support come together. 
                 Connect with others, share your journey, and discover the strength of a safe, compassionate community.
               </p>
