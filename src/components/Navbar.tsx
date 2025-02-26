@@ -48,7 +48,7 @@ export default function Navbar() {
         <div className="flex items-center flex-1">
           <Link 
             to="/" 
-            className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"
+            className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-primary-900 to-secondary-900 bg-clip-text text-transparent"
             aria-label="EYEDRA Home"
           >
             <img 
@@ -64,7 +64,7 @@ export default function Navbar() {
             <Link 
               key={item.name} 
               to={item.href} 
-              className="relative font-bold text-blue-1000 hover:text-blue-600 transition-colors 
+              className="relative font-bold text-blue-900 hover:text-blue-600 transition-colors 
                         after:content-[''] after:absolute after:bottom-0 after:left-0 
                         after:w-0 after:h-[2px] after:bg-blue-600 
                         hover:after:w-full after:transition-all after:duration-300"
